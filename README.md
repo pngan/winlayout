@@ -14,6 +14,10 @@ Then the next time the laptop is plugged into the docking station, the window lo
 
 For convenience, make a windows short cut to the file winlayout.exe (with the desired parameter) and pin to the task bar for easy access.
 
+## Installation
+
+Copy the file `winLayout.exe` onto your computur.
+
 ## Building the .exe
 
 Install `dotnet core 3 SDK` onto the developer machine.
