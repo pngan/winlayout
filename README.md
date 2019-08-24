@@ -12,7 +12,7 @@ Then the next time the laptop is plugged into the docking station, the window lo
 
 `winlayout restore`
 
-For convenience, make a windows short cut to the file winlayout.exe, and in the properties of the short, set the short cut keys. That way the save and restore can be activated by keyboard shortcuts.
+For convenience, make a windows short cut to the file winlayout.exe (with the desired parameter) and pin to the task bar for easy access.
 
 ## Building the .exe
 
