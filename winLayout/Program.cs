@@ -79,7 +79,7 @@ namespace winLayout
                         // When doing dock/undock, the windowplacement is not recognized as changed
                         // so force a small change by deactivating the windows
                         var winPlacement2 = pl[proc.ProcessName];
-                        winPlacement2.showCmd = SW_SHOWNOACTIVATE;
+                        winPlacement2.showCmd = 1;
                         SetWindowPlacement(windowHandle, ref winPlacement2);
                         
                         var winPlacement = pl[proc.ProcessName];
