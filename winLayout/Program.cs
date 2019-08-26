@@ -9,8 +9,11 @@ using System.Collections.Generic;
 
 namespace winLayout
 {
+    
+
     class Program
     {
+        const int SW_SHOWNOACTIVATE = 4;
         [DllImport("user32.dll")]
         static extern bool SetWindowPlacement(IntPtr hWnd, [In] ref WINDOWPLACEMENT lpwndpl);
         [DllImport("user32.dll")]
@@ -72,6 +75,13 @@ namespace winLayout
                         if (proc == null) continue;
                         var windowHandle = proc.MainWindowHandle;
                         if (windowHandle == (IntPtr)0) continue;
+
+                        // When doing dock/undock, the windowplacement is not recognized as changed
+                        // so force a small change by deactivating the windows
+                        var winPlacement2 = pl[proc.ProcessName];
+                        winPlacement2.showCmd = SW_SHOWNOACTIVATE;
+                        SetWindowPlacement(windowHandle, ref winPlacement2);
+                        
                         var winPlacement = pl[proc.ProcessName];
                         SetWindowPlacement(windowHandle, ref winPlacement);
                         break;
