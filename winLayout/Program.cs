@@ -43,11 +43,16 @@ namespace winLayout
             Environment.SpecialFolder.LocalApplicationData), "WinLayout");
             if (!Directory.Exists(folderName))
                 Directory.CreateDirectory(folderName);
-            string configFileName = Path.Combine(folderName, "winlayout.json");
+            string filename = "winlayout.json";
             if (args.Length > 1)
             {
-                configFileName = Path.Combine(folderName, args[1]);
+                filename = args[1];
+                if (!filename.EndsWith(".json"))
+                {
+                    filename += ".json";
+                }
             }
+            string configFileName = Path.Combine(folderName, filename);
 
             var processes = Process.GetProcesses();
             if (string.Equals(args[0], "save", StringComparison.OrdinalIgnoreCase))
