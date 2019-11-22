@@ -29,24 +29,36 @@ namespace winLayout
             public System.Drawing.Rectangle rcNormalPosition;
         }
 
+        private const string USAGE = "Usage: winLayout [save | restore] [filename (optional)]";
+
         static void Main(string[] args)
         {
             if (args.Length == 0)
             {
-                Console.WriteLine("Usage: winLayout [save | restore]");
+                Console.WriteLine(USAGE);
                 return;
             }
 
-            Dictionary<string, WINDOWPLACEMENT> winLayouts = new Dictionary<string, WINDOWPLACEMENT>();
             string folderName = Path.Combine(Environment.GetFolderPath(
             Environment.SpecialFolder.LocalApplicationData), "WinLayout");
             if (!Directory.Exists(folderName))
                 Directory.CreateDirectory(folderName);
-            string configFileName = Path.Combine(folderName, "winlayout.json");
+            string filename = "winlayout.json";
+            if (args.Length > 1)
+            {
+                filename = args[1];
+                if (!filename.EndsWith(".json"))
+                {
+                    filename += ".json";
+                }
+            }
+            string configFileName = Path.Combine(folderName, filename);
 
             var processes = Process.GetProcesses();
             if (string.Equals(args[0], "save", StringComparison.OrdinalIgnoreCase))
             {
+                Dictionary<string, WINDOWPLACEMENT> winLayouts = new Dictionary<string, WINDOWPLACEMENT>();
+
                 foreach (var process in processes)
                 {
                     var name = process.ProcessName;
@@ -91,7 +103,7 @@ namespace winLayout
             }
             else
             {
-                Console.WriteLine("Usage: winLayout [save | restore]");
+                Console.WriteLine(USAGE);
             }
         }
     }
