@@ -28,25 +28,41 @@ namespace winLayout
             public System.Drawing.Point ptMaxPosition;
             public System.Drawing.Rectangle rcNormalPosition;
         }
+		
+		private const string USAGE = "Usage: winLayout [save | restore] [screen_name (optional)]";
 
         static void Main(string[] args)
         {
-            if (args.Length == 0)
+            if (args.Length == 0 || args.Length > 2)
             {
-                Console.WriteLine("Usage: winLayout [save | restore]");
+                Console.WriteLine(USAGE);
                 return;
             }
-
-            Dictionary<string, WINDOWPLACEMENT> winLayouts = new Dictionary<string, WINDOWPLACEMENT>();
-            string folderName = Path.Combine(Environment.GetFolderPath(
+			
+            string topFolderName = Path.Combine(Environment.GetFolderPath(
             Environment.SpecialFolder.LocalApplicationData), "WinLayout");
-            if (!Directory.Exists(folderName))
-                Directory.CreateDirectory(folderName);
+			if (!Directory.Exists(topFolderName))
+                Directory.CreateDirectory(topFolderName);
+
+            string folderName;
+            if (args.Length == 2)
+            {
+                string screenName = args[1];
+                folderName = Path.Combine(topFolderName, screenName);
+                if (!Directory.Exists(folderName))
+                    Directory.CreateDirectory(folderName);
+            }
+            else
+            {
+                folderName = topFolderName;
+            }
             string configFileName = Path.Combine(folderName, "winlayout.json");
 
             var processes = Process.GetProcesses();
             if (string.Equals(args[0], "save", StringComparison.OrdinalIgnoreCase))
             {
+				Dictionary<string, WINDOWPLACEMENT> winLayouts = new Dictionary<string, WINDOWPLACEMENT>();
+				
                 foreach (var process in processes)
                 {
                     var name = process.ProcessName;
@@ -61,6 +77,8 @@ namespace winLayout
 
                 var placementJson = JsonConvert.SerializeObject(winLayouts);
                 File.WriteAllText(configFileName, placementJson);
+
+                Console.WriteLine(new FileInfo(configFileName).Directory.FullName);
             }
             else if (string.Equals(args[0], "restore", StringComparison.OrdinalIgnoreCase))
             {
@@ -91,7 +109,7 @@ namespace winLayout
             }
             else
             {
-                Console.WriteLine("Usage: winLayout [save | restore]");
+                Console.WriteLine(USAGE);
             }
         }
     }
