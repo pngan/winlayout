@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31702.278
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "winlayout-ui", "winlayout-ui\winlayout-ui.csproj", "{FC7A7229-B80C-49E0-B88F-84A80F7B62FB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FC7A7229-B80C-49E0-B88F-84A80F7B62FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC7A7229-B80C-49E0-B88F-84A80F7B62FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC7A7229-B80C-49E0-B88F-84A80F7B62FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC7A7229-B80C-49E0-B88F-84A80F7B62FB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AB2529E2-4CDC-4E37-B4F8-FAE1DAE00F96}
+	EndGlobalSection
+EndGlobal
