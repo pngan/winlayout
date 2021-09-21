@@ -5,11 +5,12 @@ A utility to save and restore window positions on a Windows Desktop.
 ## Install and Use GUI
 
 On the Windows Desktop that you wish to manage:
-Download and unzip `WinLayout-UI.zip` and run the `WinLayout-UI.exe` file.
+Download and unzip `WinLayout-UI.zip` and run the `WinLayout-UI.exe` file. Click the `Save` button to record the current window locations. Click the `Restore` button to 
+restore the saved window locations.
 
-## Install and Use Command Line
+## Alternatively, Install and Use Command Line
 
-With the laptop running on the docking station, and application windows in their desired locations, run the command:
+With the laptop running on the docking station, and application windows in their desired locations, download `winLayout.exe` run the command:
 
 `winlayout save`
 
@@ -19,9 +20,6 @@ Then the next time the laptop is plugged into the docking station, the window lo
 
 For convenience, make a windows short cut to the file winlayout.exe (with the desired parameter) and pin to the task bar for easy access.
 
-## Installation
-
-Copy the file `winLayout.exe` onto your computur.
 
 ## Building the command line .exe
 
