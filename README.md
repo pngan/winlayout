@@ -7,6 +7,8 @@ A utility to save and restore window positions on a Windows Desktop.
 On the Windows Desktop that you wish to manage:
 Download and unzip `WinLayout-UI.zip` and run the `WinLayout-UI.exe` file. Click the `Save` button to record the current window locations. Click the `Restore` button to 
 restore the saved window locations.
+![image](https://user-images.githubusercontent.com/4557674/134147662-34f4cb39-f7ad-4a82-be5f-57b476b8d7cd.png)
+
 
 ## Alternatively, Install and Use Command Line
 
