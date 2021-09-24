@@ -31,49 +31,37 @@ namespace winlayout_ui
         private Process[] Processes { get; set; }
         private string ConfigFileName { get; set; }
 
+
         public WinLayoutForm()
         {
             InitializeComponent();
+
+            restoreButton.Enabled = false;
+            saveButton.Enabled = false;
+            this.Load += WinLayoutForm_Load;
         }
 
-
-        private void WinLayoutForm_Load(object sender, System.EventArgs e)
+        private void WinLayoutForm_Load(object sender, EventArgs e)
         {
             string folderName = Path.Combine(Environment.GetFolderPath(
                 Environment.SpecialFolder.LocalApplicationData), "WinLayout");
             if (!Directory.Exists(folderName))
                 Directory.CreateDirectory(folderName);
             ConfigFileName = Path.Combine(folderName, "winlayout.json");
+
             Processes = Process.GetProcesses();
-            
-            this.button1.Enabled = false;
-            this.button2.Enabled = false;
+
+            if (File.Exists(ConfigFileName))
+                restoreButton.Enabled = true;
+
+            saveButton.Enabled = true;
         }
 
 
-        private void button1_Click(object sender, EventArgs e)
+        private void restoreButton_Click(object sender, EventArgs e)
         {
-            foreach (var process in Processes)
-            {
-                var name = process.ProcessName;
-                var windowHandle = process.MainWindowHandle;
-
-                Console.WriteLine($"Process: {process.ProcessName}, {windowHandle}");
-
-                if (windowHandle == (IntPtr)0) continue;
-
-                WINDOWPLACEMENT placement = new WINDOWPLACEMENT();
-                placement.length = Marshal.SizeOf(placement);
-                GetWindowPlacement(windowHandle, ref placement);
-                WinLayouts[process.ProcessName] = placement;
-            }
-
-            var placementJson = JsonConvert.SerializeObject(WinLayouts);
-            File.WriteAllText(ConfigFileName, placementJson);
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
+            if (!File.Exists(ConfigFileName))
+                return;
 
             var plJson = File.ReadAllText(ConfigFileName);
             var pl = JsonConvert.DeserializeObject<Dictionary<string, WINDOWPLACEMENT>>(plJson);
@@ -100,5 +88,28 @@ namespace winlayout_ui
             }
         }
 
+        private void saveButton_Click(object sender, EventArgs e)
+        {
+            foreach (var process in Processes)
+            {
+                var name = process.ProcessName;
+                var windowHandle = process.MainWindowHandle;
+
+                Console.WriteLine($"Process: {process.ProcessName}, {windowHandle}");
+
+                if (windowHandle == (IntPtr)0) continue;
+
+                WINDOWPLACEMENT placement = new WINDOWPLACEMENT();
+                placement.length = Marshal.SizeOf(placement);
+                GetWindowPlacement(windowHandle, ref placement);
+                WinLayouts[process.ProcessName] = placement;
+            }
+
+            var placementJson = JsonConvert.SerializeObject(WinLayouts);
+            File.WriteAllText(ConfigFileName, placementJson);
+
+            restoreButton.Enabled = true;
+            this.AcceptButton = saveButton;
+        }
     }
 }
