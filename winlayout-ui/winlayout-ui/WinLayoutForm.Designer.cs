@@ -35,9 +35,10 @@ namespace winlayout_ui
             // 
             // restoreButton
             // 
-            this.restoreButton.Location = new System.Drawing.Point(27, 29);
+            this.restoreButton.Location = new System.Drawing.Point(50, 35);
+            this.restoreButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.restoreButton.Name = "restoreButton";
-            this.restoreButton.Size = new System.Drawing.Size(160, 70);
+            this.restoreButton.Size = new System.Drawing.Size(200, 80);
             this.restoreButton.TabIndex = 0;
             this.restoreButton.Text = "Restore";
             this.restoreButton.UseVisualStyleBackColor = true;
@@ -45,9 +46,10 @@ namespace winlayout_ui
             // 
             // saveButton
             // 
-            this.saveButton.Location = new System.Drawing.Point(27, 128);
+            this.saveButton.Location = new System.Drawing.Point(50, 144);
+            this.saveButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(160, 70);
+            this.saveButton.Size = new System.Drawing.Size(200, 80);
             this.saveButton.TabIndex = 1;
             this.saveButton.Text = "Save";
             this.saveButton.UseVisualStyleBackColor = true;
@@ -56,12 +58,13 @@ namespace winlayout_ui
             // WinLayoutForm
             // 
             this.AcceptButton = this.restoreButton;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(218, 224);
+            this.ClientSize = new System.Drawing.Size(302, 261);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.restoreButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "WinLayoutForm";
