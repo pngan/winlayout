@@ -411,3 +411,5 @@ InteropTests/NativeTests/out
 *.received.*
 
 .vs
+winlayout-ui.exe
+winLayout.exe
